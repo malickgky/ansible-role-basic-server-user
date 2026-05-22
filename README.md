@@ -38,7 +38,7 @@ sshkeys:
 
 ### 3. Copier ta clé SSH sur les VMs
 ```bash
-ssh-copy-id root@192.168.101.220
+ssh-copy-id 
 ```
 
 ## Lancer le workflow dans VSCode
