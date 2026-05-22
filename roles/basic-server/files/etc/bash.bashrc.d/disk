@@ -1,0 +1,3 @@
+# Disk usage alias
+alias df='df -hT'
+alias du='du -sh'

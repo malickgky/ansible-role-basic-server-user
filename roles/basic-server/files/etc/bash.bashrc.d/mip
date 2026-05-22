@@ -1,0 +1,2 @@
+# Show main IP address
+alias mip="ip route get 1 | awk '{print \$NF;exit}'"

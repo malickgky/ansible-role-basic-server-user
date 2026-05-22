@@ -1,0 +1,6 @@
+---
+- name: Install extra packages (RedHat/Rocky)
+  dnf:
+    name: "{{ extra_packages }}"
+    state: present
+  when: extra_packages | length > 0

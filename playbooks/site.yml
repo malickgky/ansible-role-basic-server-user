@@ -1,0 +1,49 @@
+---
+
+- hosts: all
+  become: true
+  roles:
+    - role: basic-server
+      # Password: oktuveux2025
+      root_password: $6$y1eLREdzTU32f1yh$PbrTE8cz1TRwbQ1MrbxriLTHSbz2NKrSU/v.dACFLjocTvid/6841m6L/bqfDQXO94OxS9piiq0IVJjXdOHdS1
+      extra_packages:
+        - curl
+        - vim
+        - net-tools
+        - htop
+      manage_firewalld: true
+      rootpromptcolor: red
+      userpromptcolor: green
+      copy_admin_scripts: true
+      ssh_enable_passwd_auth: "no"
+      ssh_enable_root_login: "yes"
+      ssh_use_dns: "no"
+    - role: basic-user
+      tags: user
+      users_groups:
+        - name: exploit
+      sudoers:
+        exploit:
+          state: present
+          lines:
+            - "%exploit ALL=(ALL) NOPASSWD: ALL"
+        default:
+          state: present
+          lines:
+            - 'Defaults    env_keep += "SSH_AUTH_SOCK"'
+      users:
+        - login: elie.lamah
+          groups: exploit
+          state: present
+          sshkeys:
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDl4n2vKYdkt2Bu3oYHtDXBxmechv6/5RKyFeOz3smmOfautP1cJWhARY41xuruPtK0t/sZIPSb7Yi+kAa4ehtVQJTrfqZ4hH63bAXAQRBJmx0qXbUmoCPFepjciTxpaA7vM0cCjDKbNu8oBcO3ZUknR6ijJU56Q03TCXSgAqnUKvvTAiAdavuZCQ4iguGqMLg44RxShry557LoNmYf1OGKTKARAfCHwdXDOjnzvQ1ki9fVoNwYA+odeCVGlMlWHI96QLQcu1ziEOEk0WLThjFLwzsi8pnRM31k164/8b4XMES0kyw37U/XG30UOfgN+hL2PcPloEiOet9BKbvG2sP4zU/X4sD8lYETcgPihKma9VvS9rkLzvd16y6Sc3JPepdls7jMYo5q4OSywBMmTuhOBb/LzvW7D4iOXfTNDXIIUdn6jfSlkrDMvScMMWO7aTmIkvmBExlRHXKSmanE1p3Xq47ID4ss82fLj8F9PCxCflPM2nJoTxk3EdAHKtaDmBfSrrAU+RYhfHYvFDpbJXwYSPEEgm0D9ZbI/E72gx/hshqAlvtlefLxP6tf8gniMNUxfU/CKpWQO+IH6OEWT5ujFFN41SQ0A38FRe4vVrf4cGp5j/fR0uQwXH/U7Qq/X9v13GtJHSqqXDhhu+fg/DM8+AFF1HLMqFr2XE/NChP3xQ== elie.lamah@dbafrica.net
+        - login: pierre.zoumanigui
+          groups: exploit
+          state: present
+          sshkeys:
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC77NRfSI9cu2tnGfgPp0tI8AnHuU+MUWpwCfNOFmDj/z4j5HEQQGV8Gp7yHEv+ifFDa7HZT0ldFkerxLy1oeEGIc0DRL/uqnQapyKjIr0sEwZGg/sVumx5QrYYReK3rxo0BXKrsBusJ8/xEBe6g+Ix8Pbr34Nmsexdvn+X5X5Ka/VNTCfzyS1JqCACBsk5TwFMoFqG1ebA8+1PAA+oRLMi1S91neQ6K5Mcgt8orTHPhyxAnOluT/m+Bjw29OoxCe1t49Sw8hVKjHCskYwelWA2tb+yZmI47hNSVb5uyJUUTYwyObD8sGusbDA7o7h7zbjoMjJfEPG2TEDVs0d9iyqADqaNuZJHJ7QaoGNBWh1IORGN0iVHOd1L8q0JkkEvAkK0tCr4UvNZoRn4M4K+p1GpyRe1EJfXSNfbIqC5Ao9WObcRjIiFCuN+Dww2KO6icHLYsplZJDpZbz9YD4/2rmxLZV1JbTyn98natFrT6Mkoc0n2SMgchMZ9qzOgs5ZsX6HyP/p8pjh+bs+p4OukkACP8pB9wnZdYAS4E6R7LtgoHVGPvYmm/KOgRglAwRz++33ZC67vEmryXhMp8rscSWKjLfAcZw+iOlCiRcIM3ekbfKDpLwbKqvg84cP47tPngl709H+6+W5rmsll8H64Hm9GEv1kaCKO9MGhXFSAkYF7Vw== pierre.zoumanigui@dbafrica.net
+        - login: tanguy.glaba
+          groups: exploit
+          state: present
+          sshkeys:
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDqHKkvSUqqFSSdytL0zuaOcQ4FGy0CCxE0F1AUs2/dcETUKweCv/U0Net90Lv3ZPsxx+yMji4A2uWqbS1yNpmSnl5OEcSc0YjGi3fDb6XVy/hpgcAr4Gkk7WkrYI7pAcBWDDu0GBON8OhbrMikMWQczKwgO5otSzPZRN73DxUUihv7V+NptDqcaIUnym8fzsgWSZu7xLt/2OE19NQGIl9Lmfx3XGIzTrLXHJzs057XSnvPToXU7Fc+QcdHv9X4o0bjs2+0/Ro7Zo5lsfKOfCzZXrnDjK1mTjLabmGjhmo4gG10IHMFFWsV3NfO9JrqkYONAMQMt3G3H2Kz+A6+8fT

@@ -1,0 +1,2 @@
+# Site info displayed in prompt
+echo "Site: {{ ansible_fqdn }}"

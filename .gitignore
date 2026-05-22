@@ -1,0 +1,18 @@
+# Logs Ansible
+*.log
+ansible.log
+
+# Clés SSH — NE JAMAIS VERSIONNER
+*.pem
+*.key
+~/.ssh/
+
+# Fichiers avec mots de passe
+*.vault
+vault_pass.txt
+
+# Fichiers temporaires
+*.retry
+__pycache__/
+.vscode/
+*.pyc

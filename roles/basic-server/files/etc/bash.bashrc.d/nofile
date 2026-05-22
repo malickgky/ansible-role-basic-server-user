@@ -1,0 +1,2 @@
+# Show open files limit
+alias nofile='ulimit -n'

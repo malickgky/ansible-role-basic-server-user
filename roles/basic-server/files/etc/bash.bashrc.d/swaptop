@@ -1,0 +1,2 @@
+# Show processes using swap
+alias swaptop='for f in /proc/*/status; do awk "/VmSwap|Name/{printf \$2 \" \"}END{print \"\"}" $f; done | sort -k 2 -n -r | head'

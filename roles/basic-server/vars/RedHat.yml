@@ -1,0 +1,5 @@
+---
+ssh_service: sshd
+pkg_manager: dnf
+certificate_command: update-ca-trust
+locale_command: localectl set-locale LANG=en_US.UTF-8

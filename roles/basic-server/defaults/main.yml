@@ -1,0 +1,36 @@
+---
+root_password: ""
+extra_packages: []
+manage_firewalld: false
+rootpromptcolor: "red"
+userpromptcolor: "green"
+copy_admin_scripts: false
+ssh_enable_passwd_auth: "no"
+ssh_enable_root_login: "yes"
+ssh_use_dns: "no"
+ssh_service: sshd
+manage_hostname: false
+manage_dns: false
+generate_hosts: false
+manage_atop: false
+manage_logrotate: false
+manage_zram: false
+generate_hosts_from_inventory: false
+basic_packages:
+  - vim
+  - curl
+  - wget
+  - git
+  - net-tools
+  - bash-completion
+remove_packages: []
+extra_remove_packages: []
+hostname: "{{ ansible_hostname }}"
+service_disabled: []
+atop_enable: false
+logrotate_enable: false
+zram_enable: false
+update_all_packages: false
+host_packages: []
+timezone: "Europe/Paris"
+# promptsite_tag: ""

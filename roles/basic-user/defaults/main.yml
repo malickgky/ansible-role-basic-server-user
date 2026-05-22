@@ -1,0 +1,6 @@
+---
+ldap_users: []
+users: []
+users_groups: []
+sudoers: {}
+user_default_shell: /bin/bash

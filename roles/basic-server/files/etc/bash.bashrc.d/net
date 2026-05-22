@@ -1,0 +1,3 @@
+# Network aliases
+alias ports='ss -tulanp'
+alias myip='curl -s ifconfig.me'

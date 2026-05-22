@@ -1,0 +1,7 @@
+---
+- name: Install extra packages (Debian/Ubuntu)
+  apt:
+    name: "{{ extra_packages }}"
+    state: present
+    update_cache: yes
+  when: extra_packages | length > 0
